@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd job-01/application || exit 
+cd application || exit 
 echo "Installing dependencies..."
 go get -d -v ./.. && go install -v ./..
 echo "Building application..."

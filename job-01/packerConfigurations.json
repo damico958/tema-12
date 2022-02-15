@@ -21,18 +21,18 @@
       "provisioners": [
         {
             "type": "file",
-            "source": "application",
+            "source": "job-01/application",
             "destination": "/go/application"
         },
         {
             "type": "file",
-            "source": "scripts",
+            "source": "job-01/scripts",
             "destination": "/go/scripts"
         },    
         {
             "type": "shell",
             "scripts": [
-                "scripts/env_provisioner.sh"
+                "job-01/scripts/env_provisioner.sh"
             ]
         }
     ],

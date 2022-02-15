@@ -11,7 +11,7 @@
           "commit": true,
           "author": "damico.lipe@gmail.com",
           "changes": [
-              "WORKDIR /go/main",
+              "WORKDIR /go/application",
               "EXPOSE 8080",
               "CMD [\"calculator-app\", \"run\"]"
           ]

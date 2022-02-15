@@ -1,0 +1,55 @@
+{
+    "variables": {
+      "dockerhub_username": "",
+      "dockerhub_password": ""
+    },
+  
+    "builders": [
+        {
+          "type": "docker",
+          "image": "golang:1.17.6",
+          "commit": true,
+          "author": "damico.lipe@gmail.com",
+          "changes": [
+              "WORKDIR /go/main",
+              "EXPOSE 8080",
+              "CMD [\"calculator-app\", \"run\"]"
+          ]
+        }
+      ],
+  
+      "provisioners": [
+        {
+            "type": "file",
+            "source": "application",
+            "destination": "/go/application"
+        },
+        {
+            "type": "file",
+            "source": "scripts",
+            "destination": "/go/scripts"
+        },    
+        {
+            "type": "shell",
+            "scripts": [
+                "scripts/env_provisioner.sh"
+            ]
+        }
+    ],
+  
+    "post-processors": [
+      [
+        {
+          "type": "docker-tag",
+          "repository": "felipedamico/tema-12",
+          "tags": ["1.0", "latest"]
+        },
+        {
+          "type": "docker-push",
+          "login": true,
+          "login_username": "{{user `dockerhub_username`}}",
+          "login_password": "{{user `dockerhub_password`}}"
+        }
+      ]
+    ]
+  }

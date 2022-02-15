@@ -1,0 +1,13 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Building a Docker image through Packer and pushing to Docker Hub') {
+        steps {
+            withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
+                sh "packer build --var dockerhub_username=$DOCKERHUB_USERNAME --var dockerhub_password=$DOCKERHUB_PASSWORD job-01/packerConfigurations.json"
+            }
+          }
+        }
+    }
+}

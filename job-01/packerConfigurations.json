@@ -13,7 +13,7 @@
           "changes": [
               "WORKDIR /go/application",
               "EXPOSE 8080",
-              "CMD [\"go\", \"run\", \"main.go\"]"
+              "ENTRYPOINT go run main.go"
           ]
         }
       ],
